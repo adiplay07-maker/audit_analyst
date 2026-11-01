@@ -3,10 +3,6 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
-
-
-
-
 """
 dashboard.py
 ------------
@@ -25,9 +21,9 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-from src.data_loader import load_data
-from src.anomaly_detector import AnomalyDetector
-from src.risk_scorer import RiskScorer
+from data_loader import load_data
+from anomaly_detector import AnomalyDetector
+from risk_scorer import RiskScorer
 
 # ── Page config ──────────────────────────────────────────────
 st.set_page_config(
@@ -103,7 +99,7 @@ with col_right:
 # ── Risk matrix table ─────────────────────────────────────────
 st.subheader("📋 Risk Matrix")
 display_risk = risk_df[["entity", "transaction_count", "avg_amount",
-                          "anomaly_rate_%", "duplicate_rate_%", "risk_score", "risk_level"]].copy()
+                         "anomaly_rate_%", "duplicate_rate_%", "risk_score", "risk_level"]].copy()
 display_risk.columns = [group_col.title(), "Transactions", "Avg Amount (₹)",
                          "Anomaly %", "Duplicate %", "Risk Score", "Level"]
 st.dataframe(display_risk, use_container_width=True, hide_index=True)
